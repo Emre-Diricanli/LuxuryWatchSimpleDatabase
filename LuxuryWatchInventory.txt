@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Luxury Watch Inventory</title>
+	<style>
+		table, th, td {
+			border: 1px solid black;
+			border-collapse: collapse;
+		}
+		th, td {
+			padding: 5px;
+			text-align: left;
+		}
+	</style>
+</head>
+<body>
+	<h1>Luxury Watch Inventory</h1>
+
+	<!-- Push buttons for queries -->
+	<button onclick="query1()">Query 1</button>
+	<button onclick="query2()">Query 2</button>
+	<button onclick="query3()">Query 3</button>
+
+	<!-- Display area for query results -->
+	<div id="results"></div>
+
+	<!-- Query selection tool -->
+	<h2>Query Selection Tool</h2>
+	<form action="" method="post">
+		<label for="select-query">Select Query:</label>
+		<select id="select-query" name="select-query">
+			<option value="query1">Query 1</option>
+			<option value="query2">Query 2</option>
+			<option value="query3">Query 3</option>
+		</select>
+		<br><br>
+		<input type="submit" value="Run Query">
+	</form>
+
+	<script>
+		// Function to run Query 1
+		function query1() {
+			fetch('query1.php')
+				.then(response => response.json())
+				.then(data => {
+					let resultsDiv = document.getElementById('results');
+					resultsDiv.innerHTML = '';
+
+					if (data.length > 0) {
+						// Create table to display results
+						let table = document.createElement('table');
+						let headerRow = document.createElement('tr');
+						let brandHeader = document.createElement('th');
+						brandHeader.innerHTML = 'Brand';
+						headerRow.appendChild(brandHeader);
+						let modelHeader = document.createElement('th');
+						modelHeader.innerHTML = 'Model';
+						headerRow.appendChild(modelHeader);
+						let priceHeader = document.createElement('th');
+						priceHeader.innerHTML = 'Price';
+						headerRow.appendChild(priceHeader);
+						let stockHeader = document.createElement('th');
+						stockHeader.innerHTML = 'Stock';
+						headerRow.appendChild(stockHeader);
+						table.appendChild(headerRow);
+
+						// Add rows to table for each watch
+						for (let i = 0; i < data.length; i++) {
+							let row = document.createElement('tr');
+							let brandCell = document.createElement('td');
+							brandCell.innerHTML = data[i].brand;
+							row.appendChild(brandCell);
+							let modelCell = document.createElement('td');
+							modelCell.innerHTML = data[i].model;
+							row.appendChild(modelCell);
+							let priceCell = document.createElement('td');
+							priceCell.innerHTML = data[i].price;
+							row.appendChild(priceCell);
+							let stockCell = document.createElement('td');
+							stockCell.innerHTML = data[i].stock;
+							row.appendChild(stockCell);
+							table.appendChild(row);
+						}
+
+						// Add table to results div
+						resultsDiv.appendChild(table);
+					} else {
+						// Display message if no results
+						resultsDiv.innerHTML = 'No results found';
+					}
+				});
+		}
+
+		// Function to run Query 2
+		function query2() {
+			fetch('query2.php')
+				.then(response => response.json())
+				.then(data => {
+					let resultsDiv = document.getElementById('results');
+					resultsDiv.innerHTML				= '';
+
+				if (data.length > 0) {
+					// Create table to display results
+					let table = document.createElement('table');
+					let headerRow = document.createElement('tr');
+					let brandHeader = document.createElement('th');
+					brandHeader.innerHTML = 'Brand';
+					headerRow.appendChild(brandHeader);
+					let modelHeader = document.createElement('th');
+					modelHeader.innerHTML = 'Model';
+					headerRow.appendChild(modelHeader);
+					let priceHeader = document.createElement('th');
+					priceHeader.innerHTML = 'Price';
+					headerRow.appendChild(priceHeader);
+					let stockHeader = document.createElement('th');
+					stockHeader.innerHTML = 'Stock';
+					headerRow.appendChild(stockHeader);
+					table.appendChild(headerRow);
+
+					// Add rows to table for each watch
+					for (let i = 0; i < data.length; i++) {
+						let row = document.createElement('tr');
+						let brandCell = document.createElement('td');
+						brandCell.innerHTML = data[i].brand;
+						row.appendChild(brandCell);
+						let modelCell = document.createElement('td');
+						modelCell.innerHTML = data[i].model;
+						row.appendChild(modelCell);
+						let priceCell = document.createElement('td');
+						priceCell.innerHTML = data[i].price;
+						row.appendChild(priceCell);
+						let stockCell = document.createElement('td');
+						stockCell.innerHTML = data[i].stock;
+						row.appendChild(stockCell);
+						table.appendChild(row);
+					}
+
+					// Add table to results div
+					resultsDiv.appendChild(table);
+				} else {
+					// Display message if no results
+					resultsDiv.innerHTML = 'No results found';
+				}
+			});
+	}
+
+	// Function to run Query 3
+	function query3() {
+		fetch('query3.php')
+			.then(response => response.json())
+			.then(data => {
+				let resultsDiv = document.getElementById('results');
+				resultsDiv.innerHTML = '';
+
+				if (data.length > 0) {
+					// Create table to display results
+					let table = document.createElement('table');
+					let headerRow = document.createElement('tr');
+					let brandHeader = document.createElement('th');
+					brandHeader.innerHTML = 'Brand';
+					headerRow.appendChild(brandHeader);
+					let modelHeader = document.createElement('th');
+					modelHeader.innerHTML = 'Model';
+					headerRow.appendChild(modelHeader);
+					let priceHeader = document.createElement('th');
+					priceHeader.innerHTML = 'Price';
+					headerRow.appendChild(priceHeader);
+					let stockHeader = document.createElement('th');
+					stockHeader.innerHTML = 'Stock';
+					headerRow.appendChild(stockHeader);
+					table.appendChild(headerRow);
+
+					// Add rows to table for each watch
+					for (let i = 0; i < data.length; i++) {
+						let row = document.createElement('tr');
+						let brandCell = document.createElement('td');
+						brandCell.innerHTML = data[i].brand;
+						row.appendChild(brandCell);
+						let modelCell = document.createElement('td');
+						modelCell.innerHTML = data[i].model;
+						row.appendChild(modelCell);
+						let priceCell = document.createElement('td');
+						priceCell.innerHTML = data[i].price;
+						row.appendChild(priceCell);
+						let stockCell = document.createElement('td');
+						stockCell.innerHTML = data[i].stock;
+						row.appendChild(stockCell);
+						table.appendChild(row);
+					}
+
+					// Add table to results div
+					resultsDiv.appendChild(table);
+				} else {
+					// Display message if no results
+					resultsDiv.innerHTML = 'No results found';
+				}
+			});
+	}
+
+	// Function to run selected query from query selection tool
+	letfunction runQuery() {
+		let query = document.getElementById('query-selection').value;
+
+			if (query === 'query1') {
+			query1();
+		} else if (query === 'query2') {
+			query2();
+		} else if (query === 'query3') {
+			query3();
+		}
+	}
+
+	// Add event listeners to query buttons
+	document.getElementById('query1-button').addEventListener('click', query1);
+	document.getElementById('query2-button').addEventListener('click', query2);
+	document.getElementById('query3-button').addEventListener('click', query3);
+
+	// Add event listener to query selection tool
+	document.getElementById('run-query-button').addEventListener('click', runQuery);
+	</script>
+</body>
+</html>
+
+
+

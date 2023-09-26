@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Luxury Watch Inventory</title>
+</head>
+<body>
+	<h1>Luxury Watch Inventory</h1>
+
+	<form method="post" action="index.php">
+		<label for="query">Select a query:</label>
+		<select name="query" id="query">
+			<option value="all">Show all watches</option>
+			<option value="price">Show watches under $10,000</option>
+			<option value="stock">Show watches with stock under 10</option>
+		</select>
+		<input type="submit" value="Run Query">
+	</form>
+
+	<?php
+		// Connect to the database
+		$conn = mysqli_connect($host, $user, $password, $dbname);
+
+		// Check connection
+		if (!$conn) {
+		die('Connection failed: ' . mysqli_connect_error());
+		}
+		// Check if a query has been selected
+		if (isset($_POST['query'])) {
+			$query = $_POST['query'];
+
+			// Run the selected query and display the results
+			if ($query == 'all') {
+				$sql = "SELECT * FROM watches";
+			} else if ($query == 'price') {
+				$sql = "SELECT * FROM watches WHERE price < 10000";
+			} else if ($query == 'stock') {
+				$sql = "SELECT * FROM watches WHERE stock < 10";
+			}
+
+			$stmt = $pdo->prepare($sql);
+			$stmt->execute();
+			$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+			echo "<h2>Query Results</h2>";
+			echo "<table>";
+			echo "<tr>
+				<th>ID</th>
+				<th>Brand</th>	
+				<th>Model</th>
+				<th>Price</th>
+				<th>Stock</th>
+			      </tr>";
+			foreach ($results as $row) {
+				echo "<tr>
+					<td>".$row["id"]."</td>
+					<td>".$row['brand']."</td>
+					<td>".$row['model']."</td>
+					<td>".$row['price']."</td>
+					<td>".$row['stock']."</td>
+				     </tr>";
+			}
+			echo "</table>";
+		}
+	?>
+</body>
+</html>
+
